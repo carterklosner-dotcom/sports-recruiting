@@ -1,13 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Recruiter Search</title>
-  <script src="script.js"></script>
-</head>
-<body>
-  <h2>Recruiter Search</h2>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>hoop-vision | Recruiter</title>
 
-  <input placeholder="Position Needed" id="searchPosition"><br>
-  <button onclick="searchPlayers()">Find Players</button>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: white;
+      color: black;
+    }
+
+    .page {
+      display: flex;
+      min-height: 100vh;
+      align-items: center;
+      padding-left: 80px;
+    }
+
+    .form-container {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 18px;
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      border: 2px solid black;
+      border-radius: 6px;
+      outline: none;
+    }
+
+    input:focus {
+      background: #f5f5f5;
+    }
+
+    button {
+      width: 100%;
+      padding: 18px;
+      font-size: 1.3rem;
+      background: black;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.85;
+    }
+
+    @media (max-width: 768px) {
+      .page {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="form-container">
+      <h1>Recruiter Information</h1>
+
+      <label for="college">College / Program</label>
+      <input
+        type="text"
+        id="college"
+        placeholder="Enter the college you recruit for"
+      />
+
+      <button>Continue</button>
+    </div>
+  </div>
 </body>
 </html>
