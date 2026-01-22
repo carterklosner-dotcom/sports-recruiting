@@ -1,15 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Sports Recruiting</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <h1>Sports Recruiting Platform</h1>
-  <p>Players get discovered. Recruiters find talent.</p>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>hoop-vision</title>
 
-  <a href="role.html">
-    <button>Get Started</button>
-  </a>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #0b132b;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+    }
+
+    #text {
+      font-size: 2.5rem;
+      font-weight: bold;
+      min-height: 120px;
+    }
+
+    .buttons {
+      margin-top: 40px;
+      display: none;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .buttons a {
+      padding: 15px 30px;
+      font-size: 1.4rem;
+      text-decoration: none;
+      color: #0b132b;
+      background: #5bc0be;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: transform 0.2s;
+    }
+
+    .buttons a:hover {
+      transform: scale(1.08);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div id="text"></div>
+
+    <div class="buttons" id="buttons">
+      <a href="player.html">Player</a>
+      <a href="recruiter.html">Recruiter</a>
+    </div>
+  </div>
+
+  <script>
+    const message =
+      "Hi, welcome to hoop-vision.\nAre you a recruiter or a player?";
+    const textElement = document.getElementById("text");
+    const buttons = document.getElementById("buttons");
+
+    let index = 0;
+
+    function typeText() {
+      if (index < message.length) {
+        textElement.innerHTML +=
+          message[index] === "\n" ? "<br>" : message[index];
+        index++;
+        setTimeout(typeText, 30); // fast typing
+      } else {
+        buttons.style.display = "flex";
+      }
+    }
+
+    typeText();
+  </script>
 </body>
 </html>
