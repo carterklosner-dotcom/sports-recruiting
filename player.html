@@ -91,7 +91,8 @@
     localStorage.setItem("players", JSON.stringify(players));
 
     alert("Player saved!");
-    window.location.href = "index.html";
+    localStorage.setItem("selectedPlayer", JSON.stringify({ name, school }));
+window.location.href = "profile.html";
   }
 </script>
 <body>
