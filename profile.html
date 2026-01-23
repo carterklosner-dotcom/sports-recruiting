@@ -4,29 +4,24 @@
   <title>Player Profile | Hoop-Vision</title>
   <style>
       <body>
-  <div class="profile-page">
-    <div class="profile-card">
-      <img id="profilePhoto" class="profile-photo" />
-
-      <h1 id="playerName">Player Name</h1>
-      <p id="playerSchool">High School</p>
-
-      <div class="stats">
-        <div class="stat">
-          <span>Position</span>
-          <strong id="playerPosition"></strong>
-        </div>
-        <div class="stat">
-          <span>Height</span>
-          <strong id="playerHeight"></strong>
-        </div>
-      </div>
-    </div>
+  <div class="profile-card">
+    <img id="profilePhoto" />
+    <h1 id="playerName"></h1>
+    <p id="playerSchool"></p>
   </div>
 
-  <script src="profile.js"></script>
-</body>
+  <script>
+    const player = JSON.parse(localStorage.getItem("selectedPlayer"));
 
+    if (!player) {
+      alert("No player found");
+    } else {
+      document.getElementById("playerName").textContent = player.name;
+      document.getElementById("playerSchool").textContent = player.school;
+      document.getElementById("profilePhoto").src = player.photo;
+    }
+  </script>
+</body>
   <div class="profile">
     <img id="profilePhoto">
     <h2 id="playerName"></h2>
