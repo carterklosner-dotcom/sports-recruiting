@@ -37,7 +37,7 @@
       font-weight: bold;
     }
 
-    input {
+    input, select {
       width: 100%;
       padding: 18px;
       font-size: 1.3rem;
@@ -45,9 +45,10 @@
       border: 2px solid black;
       border-radius: 6px;
       outline: none;
+      background: white;
     }
 
-    input:focus {
+    input:focus, select:focus {
       background: #f5f5f5;
     }
 
@@ -86,6 +87,16 @@
         id="college"
         placeholder="Enter the college you recruit for"
       />
+
+      <label for="position">Position Recruiting For</label>
+      <select id="position">
+        <option value="">Select a position</option>
+        <option>Point Guard (PG)</option>
+        <option>Shooting Guard (SG)</option>
+        <option>Small Forward (SF)</option>
+        <option>Power Forward (PF)</option>
+        <option>Center (C)</option>
+      </select>
 
       <button>Continue</button>
     </div>
