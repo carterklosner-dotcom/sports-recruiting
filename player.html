@@ -104,3 +104,18 @@
   </div>
 </body>
 </html>
+<script>
+  const inputs = document.querySelectorAll("input, select");
+
+  inputs.forEach(input => {
+    // Load saved value
+    if (localStorage.getItem(input.id)) {
+      input.value = localStorage.getItem(input.id);
+    }
+
+    // Save when changed
+    input.addEventListener("input", () => {
+      localStorage.setItem(input.id, input.value);
+    });
+  });
+</script>
