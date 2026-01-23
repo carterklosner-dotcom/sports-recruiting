@@ -76,7 +76,6 @@
 </head>
 <script>
   function savePlayer() {
-  function savePlayer() {
   const name = document.getElementById("name").value;
   const school = document.getElementById("school").value;
   const photoInput = document.getElementById("photo");
@@ -95,6 +94,8 @@
     };
 
     localStorage.setItem("selectedPlayer", JSON.stringify(player));
+
+    // 🚀 redirect
     window.location.href = "profile.html";
   };
 
