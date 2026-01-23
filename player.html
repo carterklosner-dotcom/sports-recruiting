@@ -76,27 +76,30 @@
 </head>
 <script>
   function savePlayer() {
-    alert("Button works");
-    const name = document.getElementById("name").value;
-    const school = document.getElementById("school").value;
-    const height = document.getElementById("height").value;
-const grade = document.getElementById("grade").value;
+  function savePlayer() {
+  const name = document.getElementById("name").value;
+  const school = document.getElementById("school").value;
+  const photoInput = document.getElementById("photo");
 
-    if (name === "" || school === "") {
-      alert("Please fill out your name and high school");
-      return;
-    }
-
-    let players = JSON.parse(localStorage.getItem("players")) || [];
-
-    players.push({ name, school, height, grade });
-
-    localStorage.setItem("players", JSON.stringify(players));
-
-    alert("Player saved!");
-    localStorage.setItem("selectedPlayer", JSON.stringify({ name, school }));
-window.location.href = "profile.html";
+  if (!name || !school || photoInput.files.length === 0) {
+    alert("Please fill everything out and upload a photo");
+    return;
   }
+
+  const reader = new FileReader();
+  reader.onload = function () {
+    const player = {
+      name: name,
+      school: school,
+      photo: reader.result
+    };
+
+    localStorage.setItem("selectedPlayer", JSON.stringify(player));
+    window.location.href = "profile.html";
+  };
+
+  reader.readAsDataURL(photoInput.files[0]);
+}
 </script>
 <body>
   <div class="page">
