@@ -107,6 +107,8 @@ window.location.href = "profile.html";
 
       <label for="school">High School</label>
       <input type="text" id="school" placeholder="Enter your high school" />
+      <label for="photo">Profile Photo</label>
+<input type="file" id="photo" accept="image/*">
 
       <label for="position">Position</label>
       <select id="position">
@@ -128,7 +130,31 @@ window.location.href = "profile.html";
     const school = document.getElementById("school").value;
     const height = document.getElementById("height").value;
 const grade = document.getElementById("grade").value;
+      const photoFile = photoInput.files[0];
 
+  if (!photoFile) {
+    alert("Please upload a profile photo");
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function () {
+    const photoData = reader.result;
+
+    let players = JSON.parse(localStorage.getItem("players")) || [];
+
+    const player = { name, school, height, grade, photo: photoData };
+
+    players.push(player);
+    localStorage.setItem("players", JSON.stringify(players));
+    localStorage.setItem("selectedPlayer", JSON.stringify(player));
+
+    window.location.href = "profile.html";
+  };
+
+  reader.readAsDataURL(photoFile);
+}
+    
     if (!name || !school) {
       alert("Please fill out name and high school");
       return;
