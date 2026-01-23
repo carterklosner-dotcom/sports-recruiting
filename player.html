@@ -88,7 +88,7 @@ const grade = document.getElementById("grade").value;
 
     let players = JSON.parse(localStorage.getItem("players")) || [];
 
-    players.push({ name, school });
+    players.push({ name, school, height, grade });
 
     localStorage.setItem("players", JSON.stringify(players));
 
