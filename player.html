@@ -99,7 +99,26 @@
       <label for="height">Height</label>
       <input type="text" id="height" placeholder="e.g. 6'2&quot;" />
 
-      <button>Continue</button>
+      <button onclick="savePlayer()">Continue</button>
+      <script>
+  function savePlayer() {
+    const name = document.getElementById("name").value;
+    const school = document.getElementById("school").value;
+
+    if (!name || !school) {
+      alert("Please fill out name and high school");
+      return;
+    }
+
+    let players = JSON.parse(localStorage.getItem("players")) || [];
+
+    players.push({ name, school });
+
+    localStorage.setItem("players", JSON.stringify(players));
+
+    window.location.href = "index.html";
+  }
+</script>
     </div>
   </div>
 </body>
