@@ -1,41 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Player Profile | Hoop-Vision</title>
+  <meta charset="UTF-8" />
+  <title>Player Profile</title>
   <style>
-      <body>
+    body {
+      background: #0b0b0b;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .profile-card {
+      background: #111;
+      border-radius: 16px;
+      padding: 24px;
+      width: 320px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(255,255,255,0.08);
+    }
+
+    img {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid gold;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 10px 0 5px;
+      font-size: 22px;
+    }
+
+    p {
+      margin: 4px 0;
+      color: #ccc;
+    }
+  </style>
+</head>
+
+<body>
   <div class="profile-card">
-    <img id="profilePhoto" />
+    <img id="profilePhoto" src="" alt="Profile Photo" />
     <h1 id="playerName"></h1>
     <p id="playerSchool"></p>
+    <p id="playerPosition"></p>
+    <p id="playerHeight"></p>
   </div>
 
   <script>
     const player = JSON.parse(localStorage.getItem("selectedPlayer"));
 
     if (!player) {
-      alert("No player found");
+      alert("No player data found");
     } else {
       document.getElementById("playerName").textContent = player.name;
       document.getElementById("playerSchool").textContent = player.school;
+      document.getElementById("playerPosition").textContent = "Position: " + player.position;
+      document.getElementById("playerHeight").textContent = "Height: " + player.height;
       document.getElementById("profilePhoto").src = player.photo;
     }
   </script>
 </body>
-  <div class="profile">
-    <img id="profilePhoto">
-    <h2 id="playerName"></h2>
-    <p id="playerSchool"></p>
-  </div>
-
-  <script>
-    const player = JSON.parse(localStorage.getItem("selectedPlayer"));
-
-    document.getElementById("profilePhoto").src = player.photo;
-    document.getElementById("playerName").textContent = player.name;
-    document.getElementById("playerSchool").textContent = player.school;
-  </script>
-
-</body>
 </html>
-<link rel="stylesheet" href="style.css">
