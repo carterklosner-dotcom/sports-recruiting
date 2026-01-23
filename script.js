@@ -1,3 +1,20 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBXrvYmnj8ph2Li3YvPhUlr1DmjN-7sQXY",
+  authDomain: "game-town-e9880.firebaseapp.com",
+  projectId: "game-town-e9880",
+  storageBucket: "game-town-e9880.firebasestorage.app",
+  messagingSenderId: "326016055584",
+  appId: "1:326016055584:web:005d9a27584a6187533f45"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 function selectRole(role) {
   localStorage.setItem("role", role);
   window.location.href = "sport.html";
