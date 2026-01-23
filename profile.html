@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>hoop-vision | Player Profile</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: white;
+      color: black;
+      padding: 60px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.5rem;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 40px;
+      padding: 12px 24px;
+      font-size: 1rem;
+      background: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1 id="playerName"></h1>
+  <p id="playerSchool"></p>
+
+  <button onclick="window.history.back()">← Back</button>
+
+  <script>
+    const player = JSON.parse(localStorage.getItem("selectedPlayer"));
+
+    if (player) {
+      document.getElementById("playerName").textContent = player.name;
+      document.getElementById("playerSchool").textContent =
+        "High School: " + player.school;
+    }
+  </script>
+
+</body>
+</html>
