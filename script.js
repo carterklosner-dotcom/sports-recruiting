@@ -1,3 +1,8 @@
+import {
+  getFirestore,
+  collection,
+  addDoc
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
@@ -16,6 +21,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 const db = getFirestore(app);
 function selectRole(role) {
   localStorage.setItem("role", role);
