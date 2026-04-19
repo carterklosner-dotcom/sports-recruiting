@@ -1,71 +1,157 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
   <title>Player Profile</title>
   <style>
     body {
-      background: #0b0b0b;
-      color: white;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      font-family: Arial;
+      background: #f5f5f5;
       margin: 0;
+      padding: 20px;
     }
 
     .profile-card {
-      background: #111;
-      border-radius: 16px;
-      padding: 24px;
-      width: 320px;
-      text-align: center;
-      box-shadow: 0 0 30px rgba(255,255,255,0.08);
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
-    img {
-      width: 140px;
-      height: 140px;
-      object-fit: cover;
+    .top {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .top img {
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
-      border: 3px solid gold;
-      margin-bottom: 16px;
+      object-fit: cover;
+      border: 2px solid #ddd;
     }
 
-    h1 {
-      margin: 10px 0 5px;
+    .name {
       font-size: 22px;
+      font-weight: bold;
     }
 
-    p {
-      margin: 4px 0;
-      color: #ccc;
+    .info {
+      margin-top: 10px;
+      color: gray;
+    }
+
+    .stats {
+      margin-top: 15px;
+      font-size: 16px;
+    }
+
+    .upload {
+      margin-top: 20px;
+    }
+
+    .videos {
+      margin-top: 20px;
+    }
+
+    video {
+      width: 100%;
+      margin-top: 10px;
+      border-radius: 10px;
+    }
+
+    button {
+      padding: 10px;
+      border: none;
+      background: black;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
     }
   </style>
 </head>
 
 <body>
-  <div class="profile-card">
-    <img id="profilePhoto" src="" alt="Profile Photo" />
-    <h1 id="playerName"></h1>
-    <p id="playerSchool"></p>
-    <p id="playerPosition"></p>
-    <p id="playerHeight"></p>
+
+<div class="profile-card">
+
+  <div class="top">
+    <img id="profilePic" src="">
+    <div>
+      <div class="name" id="name"></div>
+      <div class="info" id="school"></div>
+      <div class="info" id="position"></div>
+    </div>
   </div>
 
-  <script>
-    const player = JSON.parse(localStorage.getItem("selectedPlayer"));
+  <div class="stats">
+    <p id="height"></p>
+    <p id="weight"></p>
+  </div>
 
-    if (!player) {
-      alert("No player data found");
-    } else {
-      document.getElementById("playerName").textContent = player.name;
-      document.getElementById("playerSchool").textContent = player.school;
-      document.getElementById("playerPosition").textContent = "Position: " + player.position;
-      document.getElementById("playerHeight").textContent = "Height: " + player.height;
-      document.getElementById("profilePhoto").src = player.photo;
+  <div class="upload">
+    <input type="file" id="videoUpload" accept="video/*">
+    <br><br>
+    <button onclick="addVideo()">Add Film</button>
+  </div>
+
+  <div class="videos" id="videoList"></div>
+
+</div>
+
+<script>
+  const player = JSON.parse(localStorage.getItem("selectedPlayer"));
+
+  document.getElementById("name").innerText = player.name;
+  document.getElementById("school").innerText = player.school;
+  document.getElementById("position").innerText = player.position || "";
+  document.getElementById("height").innerText = "Height: " + (player.height || "");
+  document.getElementById("weight").innerText = "Weight: " + (player.weight || "");
+
+  // profile pic
+  if (player.photo) {
+    document.getElementById("profilePic").src = player.photo;
+  } else {
+    document.getElementById("profilePic").src = "https://via.placeholder.com/90";
+  }
+
+  // load videos
+  let videos = JSON.parse(localStorage.getItem("videos")) || [];
+  const videoList = document.getElementById("videoList");
+
+  function renderVideos() {
+    videoList.innerHTML = "";
+    videos.forEach((vid) => {
+      const video = document.createElement("video");
+      video.src = vid;
+      video.controls = true;
+      videoList.appendChild(video);
+    });
+  }
+
+  renderVideos();
+
+  function addVideo() {
+    const file = document.getElementById("videoUpload").files[0];
+
+    if (!file) {
+      alert("Upload a video first");
+      return;
     }
-  </script>
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+      videos.push(e.target.result);
+      localStorage.setItem("videos", JSON.stringify(videos));
+      renderVideos();
+    };
+
+    reader.readAsDataURL(file);
+  }
+</script>
+
 </body>
 </html>
